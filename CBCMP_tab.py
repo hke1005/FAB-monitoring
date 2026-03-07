@@ -598,7 +598,7 @@ with left:
             total_dpw * wafer_summary["Yield_Poisson"] / 100
         ).round().astype(int)
 
-        st.markdown("**Lot Data Breakdown (행을 클릭하세요)**")
+        st.markdown("**Lot Data Breakdown (웨이퍼ID를 클릭하세요)**")
 
         display_summary = (
             wafer_summary[wafer_summary["Lot_norm"] == selected_lot_norm].reset_index(drop=True)
@@ -1159,6 +1159,7 @@ CMP<div style="position: absolute; top: -6px; right: -6px; font-size: 14px;">{st
                 st.warning("**점검 필요**")
             else:
                 st.success("**정상 가동 중**")
+
 
 
 
