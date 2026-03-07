@@ -199,12 +199,8 @@ else:
             status_indicator, priority_lot = "🟢", "없음"
         else:
             status_indicator = "🔴"
-            priority_lot = (
-                high_defect_wafers_all.groupby('Lot')
-                .size().reset_index(name='count')
-                .sort_values('count', ascending=False)
-                .iloc[0]['Lot']
-            )
+            lot_warning_counts_top = high_defect_wafers.groupby('Lot').size().reset_index(name='count').sort_values('count', ascending=False)
+            priority_lot = lot_warning_counts_top.iloc[0]['Lot']
 
         # 💡 [핵심 변경] 기둥을 단 한 번만 나눕니다.
         main_col, side_col = st.columns([65, 35], gap="large")
@@ -668,5 +664,6 @@ else:
                 st.warning(maint_msg)
             else:
                 st.success(maint_msg)
+
 
 
