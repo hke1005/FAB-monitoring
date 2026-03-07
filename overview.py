@@ -263,7 +263,7 @@ with col_mid_left:
 
     st.markdown('<div class="kpi-title">공정별 WIP 현황</div>', unsafe_allow_html=True)
 
-    processes = ['PC', 'CBCMP', 'RMG']
+    processes = ['PC', 'RMG', 'CBCMP']
     rates = [random.uniform(0.15, 0.35), random.uniform(0.45, 0.70), random.uniform(0.85, 0.95)]
     random.shuffle(rates)
 
@@ -398,3 +398,4 @@ with col_mid_right:
 
 
 st.markdown("<br>", unsafe_allow_html=True)
+
