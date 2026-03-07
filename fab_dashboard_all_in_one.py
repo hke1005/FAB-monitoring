@@ -31,8 +31,8 @@ st.markdown("""
 pages = [
     st.Page("overview.py", title="Overview", default=True),
     st.Page("PC_tab.py", title="PC"),
-    st.Page("CBCMP_tab.py", title="CBCMP"),
     st.Page("RMG_tab.py", title="RMG"),
+    st.Page("CBCMP_tab.py", title="CBCMP"),
 ]
 
 pg = st.navigation(pages)
