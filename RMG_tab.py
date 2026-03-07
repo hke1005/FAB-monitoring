@@ -184,30 +184,24 @@ else:
         wafer_summary['상태 (Severity)'] = np.where(wafer_summary['결함수'] >= 65, '🔴 HIGH', '🟢 NORMAL')
         wafer_summary = wafer_summary.sort_values('결함수', ascending=False).reset_index(drop=True)
 
-        # 경고 웨이퍼(전체 기준)
-        high_defect_wafers_all = wafer_summary[wafer_summary['결함수'] >= 65].copy()
+        high_defect_wafers = wafer_summary[wafer_summary['결함수'] >= 65]
 
-        # ----------------------------------------------------
-        # ----------------------------------------------------
-        # 상단 헤더/메인/사이드 통합 레이아웃
-        # ----------------------------------------------------
-        df_pc_all = df_raw[df_raw['Step_desc'].astype(str).str.upper() == 'PC'].copy()
-        total_wafers_produced = df_pc_all['Wafer_ID'].nunique() if not df_pc_all.empty else 0
-        class_9_cnt = len(df_pc_all[df_pc_all['Class'] == 9])
-        non_class_9_cnt = len(df_pc_all[df_pc_all['Class'] != 9])
+        df_rmg_all = df_raw[df_raw['Step_desc'].astype(str).str.upper() == 'RMG'].copy()
+        
+        total_wafers_produced = df_rmg_all['Wafer_ID'].nunique() if not df_rmg_all.empty else 0
+        
+        class_9_cnt = len(df_rmg_all[df_rmg_all['Class'] == 9])
+        non_class_9_cnt = len(df_rmg_all[df_rmg_all['Class'] != 9])
         total_defects_all = class_9_cnt + non_class_9_cnt
         class_9_ratio = (class_9_cnt / total_defects_all * 100) if total_defects_all > 0 else 0.0
-
-        if high_defect_wafers_all.empty:
-            status_indicator, priority_lot = "🟢", "없음"
+        
+        if high_defect_wafers.empty:
+            status_indicator = "<span style='color: #10B981;'>●</span>"
+            priority_lot = "없음"
         else:
-            status_indicator = "🔴"
-            priority_lot = (
-                high_defect_wafers_all.groupby('Lot')
-                .size().reset_index(name='count')
-                .sort_values('count', ascending=False)
-                .iloc[0]['Lot']
-            )
+            status_indicator = "<span style='color: #EF4444;'>●</span>"
+            lot_warning_counts_top = high_defect_wafers.groupby('Lot').size().reset_index(name='count').sort_values('count', ascending=False)
+            priority_lot = lot_warning_counts_top.iloc[0]['Lot']
 
         # 💡 [핵심 변경] 기둥을 단 한 번만 나눕니다.
         main_col, side_col = st.columns([65, 35], gap="large")
@@ -306,7 +300,7 @@ else:
                 with filter_col2:
                     selected_die = st.selectbox("다이 사이즈 선택:", ["100 mm²", "130 mm²"], key='selected_die_state')
 
-                st.markdown("<div style='margin-top: 10px;'><b>Lot Data Breakdown (웨이퍼ID를 클릭하세요!)</b></div>", unsafe_allow_html=True)
+                st.markdown("<div style='margin-top: 10px;'><b>Lot Data Breakdown (표를 클릭하세요!)</b></div>", unsafe_allow_html=True)
                 
                 if selected_lot != '전체':
                     display_summary = wafer_summary[wafer_summary['Lot'].astype(str) == selected_lot].reset_index(drop=True)
@@ -670,8 +664,4 @@ else:
             elif "점검 필요" in maint_msg:
                 st.warning(maint_msg)
             else:
-
                 st.success(maint_msg)
-
-
-
