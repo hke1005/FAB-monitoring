@@ -184,18 +184,21 @@ else:
         wafer_summary['상태 (Severity)'] = np.where(wafer_summary['결함수'] >= 65, '🔴 HIGH', '🟢 NORMAL')
         wafer_summary = wafer_summary.sort_values('결함수', ascending=False).reset_index(drop=True)
 
-        high_defect_wafers = wafer_summary[wafer_summary['결함수'] >= 65]
+        # 경고 웨이퍼(전체 기준)
+        high_defect_wafers_all = wafer_summary[wafer_summary['결함수'] >= 65].copy()
 
-        df_rmg_all = df_raw[df_raw['Step_desc'].astype(str).str.upper() == 'RMG'].copy()
-        
-        total_wafers_produced = df_rmg_all['Wafer_ID'].nunique() if not df_rmg_all.empty else 0
-        
-        class_9_cnt = len(df_rmg_all[df_rmg_all['Class'] == 9])
-        non_class_9_cnt = len(df_rmg_all[df_rmg_all['Class'] != 9])
+        # ----------------------------------------------------
+        # ----------------------------------------------------
+        # 상단 헤더/메인/사이드 통합 레이아웃
+        # ----------------------------------------------------
+        df_pc_all = df_raw[df_raw['Step_desc'].astype(str).str.upper() == 'PC'].copy()
+        total_wafers_produced = df_pc_all['Wafer_ID'].nunique() if not df_pc_all.empty else 0
+        class_9_cnt = len(df_pc_all[df_pc_all['Class'] == 9])
+        non_class_9_cnt = len(df_pc_all[df_pc_all['Class'] != 9])
         total_defects_all = class_9_cnt + non_class_9_cnt
         class_9_ratio = (class_9_cnt / total_defects_all * 100) if total_defects_all > 0 else 0.0
-        
-        if high_defect_wafers.empty:
+
+        if high_defect_wafers_all.empty:
             status_indicator, priority_lot = "🟢", "없음"
         else:
             status_indicator = "🔴"
@@ -669,5 +672,6 @@ else:
             else:
 
                 st.success(maint_msg)
+
 
 
