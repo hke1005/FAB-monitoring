@@ -196,10 +196,9 @@ else:
         class_9_ratio = (class_9_cnt / total_defects_all * 100) if total_defects_all > 0 else 0.0
         
         if high_defect_wafers.empty:
-            status_indicator = "<span style='color: #10B981;'>●</span>"
-            priority_lot = "없음"
+            status_indicator, priority_lot = "🟢", "없음"
         else:
-            status_indicator = "<span style='color: #EF4444;'>●</span>"
+            status_indicator = "🔴"
             lot_warning_counts_top = high_defect_wafers.groupby('Lot').size().reset_index(name='count').sort_values('count', ascending=False)
             priority_lot = lot_warning_counts_top.iloc[0]['Lot']
 
@@ -665,3 +664,4 @@ else:
                 st.warning(maint_msg)
             else:
                 st.success(maint_msg)
+
