@@ -237,19 +237,19 @@ with col_mid_left:
        style="width: 100%; height: auto; border-radius: 10px;
               box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10);" />
 
-  <div style="position: absolute; bottom: 5%; left: 13%;
+  <div style="position: absolute; bottom: 5%; left: 11%;
               width: 25px; height: 25px; border-radius: 50%;
               background-color: {status_colors['PC']};
               box-shadow: 0 0 15px {status_glow['PC']}, inset 0 0 5px white;
               z-index: 10;"></div>
 
-  <div style="position: absolute; bottom: 5%; left: 40.0%;
+  <div style="position: absolute; bottom: 5%; left: 42.0%;
               width: 25px; height: 25px; border-radius: 50%;
               background-color: {status_colors['CBCMP']};
               box-shadow: 0 0 15px {status_glow['CBCMP']}, inset 0 0 5px white;
               z-index: 10;"></div>
 
-  <div style="position: absolute; bottom: 5%; left: 65.0%;
+  <div style="position: absolute; bottom: 5%; left: 70.0%;
               width: 25px; height: 25px; border-radius: 50%;
               background-color: {status_colors['RMG']};
               box-shadow: 0 0 15px {status_glow['RMG']}, inset 0 0 5px white;
@@ -397,6 +397,7 @@ with col_mid_right:
 
 
 st.markdown("<br>", unsafe_allow_html=True)
+
 
 
 
