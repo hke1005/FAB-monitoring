@@ -261,7 +261,7 @@ with col_mid_left:
     else:
         st.error("⚠️ 'image_ddb1bd.png' 파일을 찾을 수 없습니다.")
 
-    st.markdown('<div class="kpi-title">Process Flow & Bottleneck</div>', unsafe_allow_html=True)
+    st.markdown('<div class="kpi-title">공정별 WIP 현황</div>', unsafe_allow_html=True)
 
     processes = ['PC', 'CBCMP', 'RMG']
     rates = [random.uniform(0.15, 0.35), random.uniform(0.45, 0.70), random.uniform(0.85, 0.95)]
@@ -395,5 +395,6 @@ with col_mid_right:
         </div>
         '''
         col.markdown(html_env, unsafe_allow_html=True)
+
 
 st.markdown("<br>", unsafe_allow_html=True)
