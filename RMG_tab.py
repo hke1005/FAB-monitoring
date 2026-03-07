@@ -195,7 +195,7 @@ else:
         total_defects_all = class_9_cnt + non_class_9_cnt
         class_9_ratio = (class_9_cnt / total_defects_all * 100) if total_defects_all > 0 else 0.0
         
-        if high_defect_wafers_all.empty:
+        if high_defect_wafers.empty:
             status_indicator, priority_lot = "🟢", "없음"
         else:
             status_indicator = "🔴"
@@ -669,4 +669,5 @@ else:
             else:
 
                 st.success(maint_msg)
+
 
