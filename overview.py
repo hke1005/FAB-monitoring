@@ -382,7 +382,7 @@ with col_mid_right:
 
     st.markdown('<div class="kpi-title">실시간 온/습도 모니터링</div>', unsafe_allow_html=True)
 
-    env_data = {'PC': ['23°C', '45%'], 'CBCMP': ['24°C', '50%'], 'RMG': ['25°C', '10%']}
+    env_data = {'PC': ['23°C', '45%'], 'RMG': ['25°C', '10%'], 'CBCMP': ['24°C', '50%']}
 
     e_c1, e_c2, e_c3 = st.columns(3)
     for i, (proc, vals) in enumerate(env_data.items()):
@@ -398,4 +398,5 @@ with col_mid_right:
 
 
 st.markdown("<br>", unsafe_allow_html=True)
+
 
