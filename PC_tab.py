@@ -312,7 +312,7 @@ else:
                 # 💡 추가된 부분: 포아송 모델 적용 수율 계산 (미리 계산하여 저장)
                 wafer_summary["Yield_Poisson"] = np.exp(-eff_chip_area_cm2 * wafer_summary["Defect_Density"]) * 100
 
-                st.markdown("**Lot Data Breakdown (표 행을 클릭하세요!)**")
+                st.markdown("**Lot Data Breakdown (웨이퍼ID를 클릭하세요!)**")
 
                 display_summary = (
                     wafer_summary[wafer_summary['Lot'].astype(str) == selected_lot].reset_index(drop=True)
@@ -822,4 +822,5 @@ else:
                 elif "점검 예정" in maint_msg:
                     st.warning(f"**{maint_msg}**")
                 else:
+
                     st.success(f"**{maint_msg}**")
