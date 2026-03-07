@@ -195,13 +195,16 @@ else:
         total_defects_all = class_9_cnt + non_class_9_cnt
         class_9_ratio = (class_9_cnt / total_defects_all * 100) if total_defects_all > 0 else 0.0
         
-        if high_defect_wafers.empty:
-            status_indicator = "<span style='color: #10B981;'>●</span>"
-            priority_lot = "없음"
+        if high_defect_wafers_all.empty:
+            status_indicator, priority_lot = "🟢", "없음"
         else:
-            status_indicator = "<span style='color: #EF4444;'>●</span>"
-            lot_warning_counts_top = high_defect_wafers.groupby('Lot').size().reset_index(name='count').sort_values('count', ascending=False)
-            priority_lot = lot_warning_counts_top.iloc[0]['Lot']
+            status_indicator = "🔴"
+            priority_lot = (
+                high_defect_wafers_all.groupby('Lot')
+                .size().reset_index(name='count')
+                .sort_values('count', ascending=False)
+                .iloc[0]['Lot']
+            )
 
         # 💡 [핵심 변경] 기둥을 단 한 번만 나눕니다.
         main_col, side_col = st.columns([65, 35], gap="large")
@@ -666,3 +669,4 @@ else:
             else:
 
                 st.success(maint_msg)
+
