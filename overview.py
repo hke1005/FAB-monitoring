@@ -16,7 +16,6 @@ from datetime import datetime, timedelta
 # ==========================================
 st.set_page_config(page_title="FAB 공정 OVERVIEW", layout="wide", initial_sidebar_state="expanded")
 
-@st.cache_data
 def get_image_base64(filename: str):
     try:
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -398,5 +397,6 @@ with col_mid_right:
 
 
 st.markdown("<br>", unsafe_allow_html=True)
+
 
 
