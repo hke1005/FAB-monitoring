@@ -308,7 +308,7 @@ else:
                 with filter_col2:
                     selected_die = st.selectbox("다이 사이즈 선택:", ["100 mm²", "130 mm²"], key='selected_die_state')
 
-                st.markdown("<div style='margin-top: 10px;'><b>Lot Data Breakdown (표를 클릭하세요!)</b></div>", unsafe_allow_html=True)
+                st.markdown("<div style='margin-top: 10px;'><b>Lot Data Breakdown (웨이퍼ID를 클릭하세요!)</b></div>", unsafe_allow_html=True)
                 
                 if selected_lot != '전체':
                     display_summary = wafer_summary[wafer_summary['Lot'].astype(str) == selected_lot].reset_index(drop=True)
@@ -673,3 +673,4 @@ else:
                 st.warning(maint_msg)
             else:
                 st.success(maint_msg)
+
