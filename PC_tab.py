@@ -817,10 +817,11 @@ else:
                 st.progress((100 - cur_equip) / 100) # 장비 수명이 남은 비율로 정상 계산되도록 수정
 
                 st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
-                if "즉시 교체 필요" in maint_msg:
+                if "장비 교체 필요" in maint_msg:
                     st.error(f"**{maint_msg}**")
-                elif "점검 예정" in maint_msg:
+                elif "점검 필요" in maint_msg:
                     st.warning(f"**{maint_msg}**")
                 else:
 
                     st.success(f"**{maint_msg}**")
+
