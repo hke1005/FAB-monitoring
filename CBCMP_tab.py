@@ -516,12 +516,18 @@ if "selected_lot_norm" not in st.session_state:
 left, right = st.columns([0.65, 0.35], gap="large")
 
 with left:
+    # 제목 왼쪽 정렬, ISO 텍스트 오른쪽 정렬 (두께 normal, 크기 20px)
     st.markdown("""
-        <div class="page-title-box">
-            <h1 style="margin-bottom:0; color:#111827;">CBCMP 공정 모니터링</h1>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 15px; margin-bottom: -15px;">
+            <div>
+                <h1 style="margin-bottom: 0; padding-bottom: 0; font-size: 2.25rem; font-weight: 700; color: #111827;">CBCMP 공정 모니터링</h1>
+                <p style="color: #6B7280; font-size: 14px; margin-top: 5px; margin-bottom: 0;">CBCMP 공정 | 결함 분포/위험 웨이퍼 배치 알림/프로파일 모니터링</p>
+            </div>
+            <div style="text-align: right; color: #9CA3AF; font-size: 20px; font-weight: normal; line-height: 1.4; padding-bottom: 5px;">
+                ISO 26262
+            </div>
         </div>
     """, unsafe_allow_html=True)
-    st.caption("CBCMP 공정 | 결함 분포/위험 웨이퍼 배치 알림/프로파일 모니터링")
 
     # ---------------------------------------------------------
     # ---------------------------------------------------------
@@ -1159,6 +1165,7 @@ CMP<div style="position: absolute; top: -6px; right: -6px; font-size: 14px;">{st
                 st.warning("**점검 필요**")
             else:
                 st.success("**정상 가동 중**")
+
 
 
 
