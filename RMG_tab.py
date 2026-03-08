@@ -223,7 +223,7 @@ else:
             """, unsafe_allow_html=True)
             
             # 💡 기둥이 합쳐졌으므로 margin-top을 양수(10px)로 주어 자연스럽게 간격을 벌립니다.
-            st.markdown("<hr style='margin-top: 20px; margin-bottom: 20px; border: 0; border-top: 1px solid rgba(156, 163, 175, 0.5);'>", unsafe_allow_html=True)
+            st.markdown("<hr style='margin-top: 10px; margin-bottom: 20px; border: 0; border-top: 1px solid rgba(156, 163, 175, 0.5);'>", unsafe_allow_html=True)
             kpi_container = st.container()
 
             row1_left, row1_right = st.columns([1.2, 2.5], gap="large")
@@ -673,4 +673,5 @@ else:
                 st.warning(maint_msg)
             else:
                 st.success(maint_msg)
+
 
