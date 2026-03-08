@@ -209,12 +209,21 @@ else:
         # 4. 좌측 메인 영역 (타이틀 포함)
         # ==========================================
         with main_col:
-            # 💡 타이틀을 왼쪽 기둥 안으로 가져왔습니다.
-            st.title("RMG 공정 모니터링")
-            st.caption("RMG 공정 | 결함 분포/경고 웨이퍼/공정 변수 모니터링")
+            # 💡 타이틀 영역 수정: font-weight normal, 20px, ISO 26262만 적용!
+            st.markdown("""
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 15px; margin-bottom: -15px;">
+                <div>
+                    <h1 style="margin-bottom: 0; padding-bottom: 0; font-size: 2.25rem; font-weight: 700;">RMG 공정 모니터링</h1>
+                    <p style="color: #6B7280; font-size: 14px; margin-top: 5px; margin-bottom: 0;">RMG 공정 | 결함 분포/경고 웨이퍼/공정 변수 모니터링</p>
+                </div>
+                <div style="text-align: right; color: #9CA3AF; font-size: 20px; font-weight: normal; line-height: 1.4; padding-bottom: 5px;">
+                    ISO 26262
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
             
             # 💡 기둥이 합쳐졌으므로 margin-top을 양수(10px)로 주어 자연스럽게 간격을 벌립니다.
-            st.markdown("<hr style='margin-top: 70px; margin-bottom: 20px; border: 0; border-top: 1px solid rgba(156, 163, 175, 0.5);'>", unsafe_allow_html=True)
+            st.markdown("<hr style='margin-top: 20px; margin-bottom: 20px; border: 0; border-top: 1px solid rgba(156, 163, 175, 0.5);'>", unsafe_allow_html=True)
             kpi_container = st.container()
 
             row1_left, row1_right = st.columns([1.2, 2.5], gap="large")
@@ -442,7 +451,7 @@ else:
                         r=radar_vals_closed,
                         theta=radar_labels_closed,
                         fill='toself',
-                        line_color='#60A5FA',          
+                        line_color='#60A5FA',         
                         fillcolor='rgba(96, 165, 250, 0.4)', 
                         marker=dict(size=6)
                     ))
@@ -664,6 +673,3 @@ else:
                 st.warning(maint_msg)
             else:
                 st.success(maint_msg)
-
-
-
