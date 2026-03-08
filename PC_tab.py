@@ -241,8 +241,8 @@ else:
                     <h1 style="margin-bottom: 0; padding-bottom: 0; font-size: 2.25rem; font-weight: 700;">PC 공정 모니터링</h1>
                     <p style="color: #6B7280; font-size: 14px; margin-top: 5px; margin-bottom: 0;">PC 공정 | 결함 분포/경고 웨이퍼/공정 변수 모니터링</p>
                 </div>
-                <div style="text-align: right; color: #9CA3AF; font-size: 14px; font-weight: bold; line-height: 1.4; padding-bottom: 5px;">
-                    ISO 26262<br>ISO 7726
+                <div style="text-align: right; color: #9CA3AF; font-size: 14px; font-weight: normal; line-height: 1.4; padding-bottom: 5px;">
+                    ISO 26262
                 </div>
             </div>
             """, unsafe_allow_html=True)
@@ -835,3 +835,4 @@ else:
                     st.warning(f"**{maint_msg}**")
                 else:
                     st.success(f"**{maint_msg}**")
+
