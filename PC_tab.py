@@ -341,8 +341,11 @@ else:
 
             # --- selection에 따라 filtered_df 결정 ---
             selected_wafer_id = None
+            target_lot_for_eq = selected_lot
+            
             if event.selection.rows:
                 selected_wafer_id = display_summary.iloc[event.selection.rows[0]]['Wafer_ID']
+                target_lot_for_eq = display_summary.iloc[event.selection.rows[0]]['Lot']
                 filtered_df = df[df['Wafer_ID'] == selected_wafer_id].copy()
                 chart_title_suffix = f" ({selected_wafer_id})"
             else:
@@ -639,15 +642,25 @@ else:
         # ==========================================
         # ✅ 우측 사이드바
         # ==========================================
+        # ==========================================
+        # ✅ 우측 사이드바
+        # ==========================================
+        # ==========================================
+        # ✅ 우측 사이드바
+        # ==========================================
         with side_col:
+            # 💡 제목에도 현재 기준이 되는 Lot 번호가 표시되도록 수정
             st.markdown(
-                f"<h4 style='color: #1E3A8A; margin-top: 15px; margin-bottom: 10px; font-weight: bold;'>노광 변수 모니터링 {f'(Lot: {selected_lot})' if selected_lot != '전체' else ''}</h4>",
+                f"<h4 style='color: #1E3A8A; margin-top: 15px; margin-bottom: 10px; font-weight: bold;'>노광 변수 모니터링 (Lot: {target_lot_for_eq})</h4>",
                 unsafe_allow_html=True
             )
             
-            df_eq = get_simulated_equipment_data(selected_lot)
+            # 💡 선택된 웨이퍼의 소속 Lot 번호로 장비 데이터 호출!
+            df_eq = get_simulated_equipment_data(target_lot_for_eq)
+            
             current_dose = df_eq['Dose'].iloc[-1]
             current_focus = df_eq['Focus'].iloc[-1]
+            
             
             dose_status = "OK" if abs(current_dose - 25.0) <= 1.0 else "WARNING"
             dose_color = "#10B981" if dose_status == "OK" else "#EF4444"
@@ -824,4 +837,3 @@ else:
                 else:
 
                     st.success(f"**{maint_msg}**")
-
